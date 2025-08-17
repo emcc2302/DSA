@@ -9,7 +9,7 @@ public:
         }
 
         for (int num : nums2) {
-            if (freq[num]>0) {
+            if (freq[num]>=1) {
                 res.push_back(num);
                 freq[num]--; // use one occurrence
             }
