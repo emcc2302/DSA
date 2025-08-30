@@ -20,4 +20,4 @@ public:
 
 
 
-//sala code sai jadya too explanation da diya maine\U0001f602\U0001f602
+//sala code sai jadya too explanation da diya maine
