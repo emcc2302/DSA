@@ -47,34 +47,55 @@
 
 
 //Divide & Conquer
+//This Works
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// class Solution {
+// public:
+//     int maxCrossingSum(vector<int>& nums, int l, int m, int r) {
+//         int leftSum = INT_MIN, rightSum = INT_MIN, sum = 0;
+//         for (int i = m; i >= l; i--) {
+//             sum += nums[i];
+//             leftSum = max(leftSum, sum);
+//         }
+//         sum = 0;
+//         for (int i = m+1; i <= r; i++) {
+//             sum += nums[i];
+//             rightSum = max(rightSum, sum);
+//         }
+//         return leftSum + rightSum;
+//     }
+
+//     int maxSubArrayHelper(vector<int>& nums, int l, int r) {
+//         if (l == r) return nums[l];
+//         int m = (l + r) / 2;
+//         return max({maxSubArrayHelper(nums, l, m),
+//                     maxSubArrayHelper(nums, m+1, r),
+//                     maxCrossingSum(nums, l, m, r)});
+//     }
+
+//     int maxSubArray(vector<int>& nums) {
+//         return maxSubArrayHelper(nums, 0, nums.size()-1);
+//     }
+// };
+
+
+//Dynamic Programming
 #include <bits/stdc++.h>
 using namespace std;
 
 class Solution {
 public:
-    int maxCrossingSum(vector<int>& nums, int l, int m, int r) {
-        int leftSum = INT_MIN, rightSum = INT_MIN, sum = 0;
-        for (int i = m; i >= l; i--) {
-            sum += nums[i];
-            leftSum = max(leftSum, sum);
-        }
-        sum = 0;
-        for (int i = m+1; i <= r; i++) {
-            sum += nums[i];
-            rightSum = max(rightSum, sum);
-        }
-        return leftSum + rightSum;
-    }
-
-    int maxSubArrayHelper(vector<int>& nums, int l, int r) {
-        if (l == r) return nums[l];
-        int m = (l + r) / 2;
-        return max({maxSubArrayHelper(nums, l, m),
-                    maxSubArrayHelper(nums, m+1, r),
-                    maxCrossingSum(nums, l, m, r)});
-    }
-
     int maxSubArray(vector<int>& nums) {
-        return maxSubArrayHelper(nums, 0, nums.size()-1);
+        int n = nums.size();
+        vector<int> dp(n);
+        dp[0] = nums[0];
+        int maxSum = dp[0];
+        for (int i = 1; i < n; i++) {
+            dp[i] = max(nums[i], dp[i-1] + nums[i]);
+            maxSum = max(maxSum, dp[i]);
+        }
+        return maxSum;
     }
 };
