@@ -1,25 +1,24 @@
+#include <bits/stdc++.h>
+using namespace std;
+
 class Solution {
 public:
-    static int maxIncreasingSubarrays(vector<int>& nums) {
-        const int n=nums.size();
-        int len=1, prev=0, k=0;
-        for(int i=1; i<n; i++){
-            if(nums[i]>nums[i-1]) len++; 
-            else{
-                k=max({k, len/2, min(len, prev)}); 
-                prev=len;
-                len=1;
+    int maxIncreasingSubarrays(vector<int>& nums) {
+        int n = nums.size();
+        int maxK = 0, prev = 0, curr = 1;        
+        // single pass - track current and previous increasing run lengths
+        for (int i = 1; i < n; i++) {
+            if (nums[i] > nums[i - 1]) {
+                curr++;
+            } else {
+                // when run ends, check the max k from prev and curr runs
+                maxK = max({maxK, curr / 2, min(prev, curr)});
+                prev = curr;
+                curr = 1;
             }
-        }
-        return max({k, len/2, min(len, prev)});
+        }        
+        // don't forget to check the last run
+        maxK = max({maxK, curr / 2, min(prev, curr)});        
+        return maxK;
     }
 };
-
-
-auto init = []()
-{ 
-    ios::sync_with_stdio(0);
-    cin.tie(0);
-    cout.tie(0);
-    return 'c';
-}();
