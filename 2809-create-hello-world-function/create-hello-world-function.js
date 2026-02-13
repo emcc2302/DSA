@@ -7,4 +7,4 @@ const createHelloWorld = function() {
 }
 
 
-    fs.writeFileSync("display_runtime.txt", "2");
+    fs.writeFileSync("display_runtime.txt", "0");
