@@ -9,6 +9,9 @@ public:
             }
             else{
                 if(zero) return false;
+                //firse agar 0 k bd 1 aaya too flase,as leading term must be 1 (given in the question)
+
+                //faltu question 
             }
         }
         return true;
