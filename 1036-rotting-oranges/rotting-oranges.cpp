@@ -14,6 +14,9 @@ public:
                     q.push({{i, j}, 0});
                     vis[i][j] = 2;
                 }
+                else{
+                    vis[i][j]=0;
+                }
             }
         }
 
