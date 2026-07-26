@@ -14,8 +14,13 @@ if (word1.size() != word2.size())
 
         // Check same set of characters
         for (int i = 0; i < 26; i++) {
-            if ((freq1[i] == 0) != (freq2[i] == 0))
-                return false;
+            // if ((freq1[i] == 0) != (freq2[i] == 0))
+            //     return false;
+                if (freq1[i] == 0 && freq2[i] != 0)
+                    return false;
+
+                if (freq1[i] != 0 && freq2[i] == 0)
+                    return false;
         }
 
         sort(freq1.begin(), freq1.end());
